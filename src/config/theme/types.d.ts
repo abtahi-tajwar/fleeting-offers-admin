@@ -7,6 +7,8 @@ namespace Utils {
 			primaryDark: string[];
 			accent: string;
 			accentDark: string[];
+			backgroundLight: string,
+			backgroundDark: string
 		};
 		font: {
 			primary: string;
