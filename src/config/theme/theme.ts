@@ -8,9 +8,14 @@ export const theme: Utils.Theme = {
 			accent: "#ea698b",
 			accent_deep: ["#d55d92", "#c05299", "#c05299"],
 			background: "#ffffff",
+			gray: "#E1E1E1",
+			text: "#ffffff",
+			text_primary: "#47126b",
+			text_primary_light: ["#571089"]
 		},
 		font: {
-			primary: `ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`
+			primary: `ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`,
+			secondary: `"Noto Sans JP", "Cal Sans", ui-sans-serif`
 		}
 	},
 	dark: {
@@ -20,10 +25,15 @@ export const theme: Utils.Theme = {
 			primary_deep: ["#47126b"],
 			accent: "#ea698b",
 			accent_deep: ["#d55d92", "#c05299", "#c05299"],
-			background: "#0a0f1c"
+			background: "#0a0f1c",
+			gray: "#E1E1E1",
+			text: "#000000",
+			text_primary: "#47126b",
+			text_primary_light: ["#571089"]
 		},
 		font: {
-			primary: `ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`
+			primary: `ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`,
+			secondary: `"Noto Sans JP", "Cal Sans", ui-sans-serif`
 		}
 	}
 

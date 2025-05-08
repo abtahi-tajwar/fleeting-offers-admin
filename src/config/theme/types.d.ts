@@ -13,9 +13,14 @@ namespace Utils {
 			accent: string;
 			accent_deep: string[];
 			background: string;
+			gray: string;
+			text: string,
+			text_primary: string;
+			text_primary_light: string[];
 		};
 		font: {
 			primary: string;
+			secondary: string;
 		};
 	};
 }
