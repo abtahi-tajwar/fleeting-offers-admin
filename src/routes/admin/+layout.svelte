@@ -1,10 +1,13 @@
 <script>
 	let { children } = $props();
 	import Sidenav from '$lib/components/Navigation/Sidenav.svelte';
+
+	// States
+	let containerOffset = 12;
 </script>
 
-<div class="bg-gradient-to-r from-primary to-accent w-full h-screen">
-	<div class="flex m-4 rounded bg-backgroundLight dark:bg-backgroundDark">
+<div class="bg-gradient-to-r from-primary dark:from-primary-dark to-accent dark:to-accent-dark w-full h-screen" style="padding: {containerOffset}px">
+	<div class="flex rounded bg-background dark:bg-background-dark h-full">
 		<!-- Sidenavigation -->
 		<div class="w-[280px]">
 			<Sidenav />
