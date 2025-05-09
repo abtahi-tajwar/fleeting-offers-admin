@@ -12,7 +12,7 @@
 </script>
 
 <div
-  class="flex flex-row items-center gap-2 p-2 rounded cursor-pointer hover:bg-background/80 transition ease-in-out duration-300"
+  class="flex flex-row items-center gap-2 p-2 rounded cursor-pointer hover:bg-background-pure/50 transition ease-in-out duration-300"
 >
   {#if icon}
     <svelte:component this={icon.component} scale={0.8} {...icon.props} />
@@ -20,7 +20,7 @@
   <Text class="text-sm">{label}</Text>
   {#if badgeCount > 0}
     <div
-      class="h-6 w-6 text-base/0 rounded flex justify-center items-center ml-auto bg-background text-text-primary"
+      class="h-6 w-6 text-base/0 rounded flex justify-center items-center ml-auto bg-background-pure text-text-primary"
     >
       <p class="m-0! p-0! text-sm">{badgeCount}</p>
     </div>

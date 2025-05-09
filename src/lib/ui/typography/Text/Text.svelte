@@ -5,7 +5,7 @@
 {#if variant === 'p'}
   <p class="text-class" {...$$restProps}><slot /></p>
 {:else if variant === 'span'}
-  <p class="text-class" {...$$restProps}><slot /></p>
+  <span class="text-class leading-[0]" {...$$restProps}><slot /></span>
 {:else}
   <p class="text-class" {...$$restProps}><slot /></p>
 {/if}

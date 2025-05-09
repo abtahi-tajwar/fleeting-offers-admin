@@ -6,7 +6,7 @@
 </script>
 
 <div
-  class="relative w-full h-full overflow-x-hidden border-r-[0.8px] border-r-gray font-secondary font-medium bg-gray-200"
+  class="relative w-full h-full overflow-x-hidden border-r-[0.8px] border-r-gray font-secondary font-medium bg-gray-100"
   style={`--stop-one: ${theme.light.color.primary}; --stop-two: ${theme.light.color.accent};`}
 >
   <div class="p-4 flex items-center flex-row gap-[15px]">

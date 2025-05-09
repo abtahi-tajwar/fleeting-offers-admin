@@ -1,6 +1,6 @@
 namespace Utils {
 	export type Theme = {
-		mode: "light" | "dark";
+		mode: ThemeColorSchemes;
 		light: ThemeDefinition;
 		dark: ThemeDefinition; // optional if you want to support dark mode later
 	};
@@ -13,8 +13,11 @@ namespace Utils {
 			accent: string;
 			accent_deep: string[];
 			background: string;
+			background_pure: string;
+			background_toned: [string];
 			gray: string;
 			text: string,
+			text_light: string,
 			text_primary: string;
 			text_primary_light: string[];
 		};
@@ -23,4 +26,5 @@ namespace Utils {
 			secondary: string;
 		};
 	};
+	export type ThemeColorSchemes = "light" | "dark";
 }
