@@ -6,7 +6,7 @@
 </script>
 
 <div
-  class="relative w-full h-full overflow-x-hidden border-r-[0.8px] border-r-gray font-secondary font-medium bg-gray-100"
+  class="relative flex flex-col w-full h-full overflow-hidden border-r-[0.8px] border-r-gray font-secondary font-medium bg-gray-100"
   style={`--stop-one: ${theme.light.color.primary}; --stop-two: ${theme.light.color.accent};`}
 >
   <div class="p-4 flex items-center flex-row gap-[15px]">
@@ -20,7 +20,7 @@
       </button>
     </div>
   </div>
-  <div class="flex flex-col px-2">
+  <div class="flex flex-col p-2 border-b-gray border-b-[0.8px]">
     <SidenavItems
       icon={{
         component: ShortcutIcon,
@@ -31,7 +31,18 @@
       label="Shortcut"
       badgeCount={2}
     />
+    <SidenavItems
+      icon={{
+        component: ShortcutIcon,
+        props: {
+          scale: 0.8,
+        },
+      }}
+      label="History"
+    />
   </div>
+
+  <div class="flex flex-col p-2 overflow-y-auto flex-1"></div>
   <div class="absolute mesh-background -inset-10 pointer-events-none"></div>
 </div>
 
