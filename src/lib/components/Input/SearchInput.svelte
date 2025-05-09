@@ -6,7 +6,7 @@
 </script>
 
 <div
-  class="flex flex-row gap-3 items-center rounded-lg px-3 py-3 bg-background-pure {containerStyleClass}"
+  class="flex flex-row gap-3 items-center rounded-lg px-3 py-2 bg-background-pure {containerStyleClass}"
 >
   <SearchIcon />
   <input class="flex-1 border-none outline-none" />

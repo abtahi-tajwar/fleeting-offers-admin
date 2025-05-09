@@ -4,6 +4,10 @@
   import { theme } from '../../../../config/theme/theme'
   import SidenavItems from './internal/SidenavItems.svelte'
   import navTree from '../../../../core/nav-tree/nav-tree'
+  import HistoryIcon from '$lib/icons/HistoryIcon.svelte'
+  import { initializeNavTreeState } from './Sidenav.service'
+
+  const navItems = initializeNavTreeState(navTree)
 </script>
 
 <div
@@ -29,12 +33,13 @@
           scale: 0.8,
         },
       }}
-      label="Shortcut"
+      label="Shortcuts"
+      selected={true}
       badgeCount={2}
     />
     <SidenavItems
       icon={{
-        component: ShortcutIcon,
+        component: HistoryIcon,
         props: {
           scale: 0.8,
         },
@@ -45,11 +50,12 @@
 
   <div class="flex flex-col p-2 overflow-y-auto flex-1">
     <!-- Section -->
-    {#each navTree as section (section.id)}
+    {#each navItems as section (section.id)}
       <div class="mt-3 mb-2">
         <p class="text-xs text-text-light uppercase">{section.label}</p>
         {#each section.module as module (module.id)}
           <SidenavItems
+            submodules={module.submodule}
             icon={{
               component: module.icon,
               props: {
