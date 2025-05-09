@@ -12,7 +12,7 @@
 </script>
 
 <div
-  class="flex flex-row items-center gap-2 p-2 rounded cursor-pointer hover:bg-background-pure/50 transition ease-in-out duration-300"
+  class="flex flex-row my-1 items-center gap-2 p-2 rounded cursor-pointer hover:bg-background-pure/50 transition ease-in-out duration-300"
 >
   {#if icon}
     <svelte:component this={icon.component} scale={0.8} {...icon.props} />

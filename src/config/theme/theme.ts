@@ -1,4 +1,4 @@
-export const theme: Utils.Theme = {
+export const theme: Core.Theme = {
 	mode: "light",
 	light: {
 		color: {

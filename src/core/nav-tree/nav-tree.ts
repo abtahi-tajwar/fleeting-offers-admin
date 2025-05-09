@@ -6,7 +6,7 @@ import AdvertiseTagIcon from '$lib/icons/AdvertiseTagIcon.svelte'
 import CampaigAdsIcon from '$lib/icons/CampaignAdsIcon.svelte'
 import DashboardIcon from '$lib/icons/DashboardIcon.svelte'
 
-const navTree = [
+const navTree: Core.NavTree = [
   {
     id: "advertise",
     label: "Advertise",

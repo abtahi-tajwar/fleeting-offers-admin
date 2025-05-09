@@ -1,4 +1,4 @@
-namespace Utils {
+namespace Core {
 	export type Theme = {
 		mode: ThemeColorSchemes;
 		light: ThemeDefinition;
@@ -14,7 +14,7 @@ namespace Utils {
 			accent_deep: string[];
 			background: string;
 			background_pure: string;
-			background_toned: [string];
+			background_toned: string[];
 			gray: string;
 			text: string,
 			text_light: string,

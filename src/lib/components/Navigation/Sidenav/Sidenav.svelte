@@ -3,6 +3,7 @@
   import ShortcutIcon from '$lib/icons/ShortcutIcon.svelte'
   import { theme } from '../../../../config/theme/theme'
   import SidenavItems from './internal/SidenavItems.svelte'
+  import navTree from '../../../../core/nav-tree/nav-tree'
 </script>
 
 <div
@@ -42,7 +43,25 @@
     />
   </div>
 
-  <div class="flex flex-col p-2 overflow-y-auto flex-1"></div>
+  <div class="flex flex-col p-2 overflow-y-auto flex-1">
+    <!-- Section -->
+    {#each navTree as section (section.id)}
+      <div class="mt-3 mb-2">
+        <p class="text-xs text-text-light uppercase">{section.label}</p>
+        {#each section.module as module (module.id)}
+          <SidenavItems
+            icon={{
+              component: module.icon,
+              props: {
+                scale: 0.8,
+              },
+            }}
+            label={module.label}
+          />
+        {/each}
+      </div>
+    {/each}
+  </div>
   <div class="absolute mesh-background -inset-10 pointer-events-none"></div>
 </div>
 
