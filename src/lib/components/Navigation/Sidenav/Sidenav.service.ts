@@ -31,3 +31,38 @@ export const initializeNavTreeState = (tree: Core.NavTree): SidenavSection[] => 
   }));
 }
 
+export const onNavItemSelect = (
+  navTree: SidenavSection[],
+  selectedModule: SidenavModule
+): SidenavSection[] => {
+  return navTree.map((section) => ({
+    ...section,
+    module: section.module.map((mod): SidenavModule => {
+      const isSelected = mod.id === selectedModule.id;
+
+      return {
+        // Copy over Core.NavModule props
+        id: mod.id,
+        label: mod.label,
+        icon: mod.icon,
+        description: mod.description,
+        tags: mod.tags,
+
+        // Add SidenavModule-specific props
+        collapsed: false,
+        selected: isSelected ? !selectedModule.selected : mod.id === selectedModule.id,
+        submodule: mod.submodule.map((sub): SidenavSubmodule => ({
+          id: sub.id,
+          label: sub.label,
+          description: sub.description,
+          tags: sub.tags,
+
+          // Add SidenavSubmodule-specific props
+          selected: false,
+        })),
+      };
+    }),
+  }));
+};
+
+

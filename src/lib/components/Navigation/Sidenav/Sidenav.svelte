@@ -1,13 +1,18 @@
-<script>
+<script lang="ts">
   import CollapseIcon from '$lib/icons/collapseIcon.svelte'
   import ShortcutIcon from '$lib/icons/ShortcutIcon.svelte'
   import { theme } from '../../../../config/theme/theme'
   import SidenavItems from './internal/SidenavItems.svelte'
   import navTree from '../../../../core/nav-tree/nav-tree'
   import HistoryIcon from '$lib/icons/HistoryIcon.svelte'
-  import { initializeNavTreeState } from './Sidenav.service'
+  import { initializeNavTreeState, onNavItemSelect } from './Sidenav.service'
+  import type { SidenavModule } from './Sidenav.service'
 
-  const navItems = initializeNavTreeState(navTree)
+  let navItems = initializeNavTreeState(navTree)
+  const handleNavItemSelect = (e: CustomEvent<SidenavModule>) => {
+    navItems = onNavItemSelect(navItems, e.detail)
+    console.log('navItems', navItems)
+  }
 </script>
 
 <div
@@ -27,24 +32,30 @@
   </div>
   <div class="flex flex-col p-2 border-b-gray border-b-[0.8px]">
     <SidenavItems
-      icon={{
-        component: ShortcutIcon,
-        props: {
-          scale: 0.8,
-        },
-      }}
-      label="Shortcuts"
-      selected={true}
       badgeCount={2}
+      module={{
+        label: 'Shortcuts',
+        icon: ShortcutIcon,
+        id: 'history',
+        tags: ['history'],
+        description: '',
+        submodule: [],
+        collapsed: true,
+        selected: true,
+      }}
     />
     <SidenavItems
-      icon={{
-        component: HistoryIcon,
-        props: {
-          scale: 0.8,
-        },
+      badgeCount={0}
+      module={{
+        label: 'History',
+        icon: HistoryIcon,
+        id: 'history',
+        tags: ['history'],
+        description: '',
+        submodule: [],
+        collapsed: true,
+        selected: false,
       }}
-      label="History"
     />
   </div>
 
@@ -55,14 +66,9 @@
         <p class="text-xs text-text-light uppercase">{section.label}</p>
         {#each section.module as module (module.id)}
           <SidenavItems
-            submodules={module.submodule}
-            icon={{
-              component: module.icon,
-              props: {
-                scale: 0.8,
-              },
-            }}
-            label={module.label}
+            on:menuclick={handleNavItemSelect}
+            {module}
+            badgeCount={0}
           />
         {/each}
       </div>
