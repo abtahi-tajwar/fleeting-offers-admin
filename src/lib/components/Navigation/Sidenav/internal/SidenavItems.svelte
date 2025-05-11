@@ -5,14 +5,19 @@
   import Text from '$lib/ui/typography/Text/Text.svelte'
   import ArrowRightIcon from '$lib/icons/ArrowRightIcon.svelte'
   import type { SidenavModule } from '../Sidenav.service'
+  import { appStore } from '../../../../../store/app.store/appStore.svelte'
 
   const dispatch = createEventDispatcher()
-  export let module: SidenavModule
-  export let badgeCount: number
+  // export let module: SidenavModule
+  // export let badgeCount: number
+
+  let { module, badgeCount }: { module: SidenavModule; badgeCount: number } =
+    $props()
 
   const handleMenuClick = (module: SidenavModule) => {
     dispatch('menuclick', module)
   }
+  let sidenavOpenState = $derived(appStore.sidenavOpenState)
 </script>
 
 <div>
@@ -26,15 +31,17 @@
     {#if module.icon}
       <svelte:component this={module.icon} scale={0.8} />
     {/if}
-    <Text class="text-sm">{module.label}</Text>
-    {#if badgeCount > 0}
+    {#if sidenavOpenState !== 'collapsed'}
+      <Text class="text-sm">{module.label}</Text>
+    {/if}
+    {#if badgeCount > 0 && sidenavOpenState !== 'collapsed'}
       <div
         class="h-6 w-6 text-base/0 rounded flex justify-center items-center ml-auto bg-background-pure text-text-primary"
       >
         <p class="m-0! p-0! text-sm">{badgeCount}</p>
       </div>
     {/if}
-    {#if module.submodule.length !== 0}
+    {#if module.submodule.length !== 0 && sidenavOpenState !== 'collapsed'}
       <div
         class="ml-auto transition ease-in-out duration-300"
         style={`${module.selected ? 'transform: rotate(90deg)' : ''}`}

@@ -1,15 +1,13 @@
-import { appStore } from "../../store/app.store/app.store";
+import { appStore } from "../../store/app.store/appStore.svelte";
 
-function toggleTheme() {
-  appStore.update((state: Store.AppStore) => ({
-    ...state,
-    theme: state.theme === 'light' ? 'dark' : 'light'
-  }))
+export function toggleTheme() {
+  appStore.theme = appStore.theme === 'light' ? 'dark' : 'light'
 }
 
-function toggleSideNav() {
-  appStore.update((state: Store.AppStore) => ({
-    ...state,
-    sidenavOpenState: state.sidenavOpenState === "expanded" ? "collapsed" : "expanded",
-  }))
+
+export function expandSidenav() {
+  appStore.sidenavOpenState = "expanded"
+}
+export function collapseSidenav() {
+  appStore.sidenavOpenState = "collapsed"
 }

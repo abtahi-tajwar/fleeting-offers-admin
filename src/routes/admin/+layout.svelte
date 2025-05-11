@@ -1,7 +1,10 @@
-<script>
+<script lang="ts">
   let { children } = $props()
   import Sidenav from '$lib/components/Navigation/Sidenav/Sidenav.svelte'
   import Topnav from '$lib/components/Navigation/Topnav/Topnav.svelte'
+  import ArrowRightIcon from '$lib/icons/ArrowRightIcon.svelte'
+  import IconButton from '$lib/ui/Button/IconButton.svelte'
+  import { expandSidenav } from '../../core/app/app.service'
   import { appStore } from '../../store/app.store/appStore.svelte'
   // States
   let containerOffset = 12
@@ -15,6 +18,16 @@
       return 'w-[0px]'
     }
   })
+
+  let navWidth = $derived(
+    appStore.sidenavOpenState === 'expanded'
+      ? 280
+      : appStore.sidenavOpenState === 'collapsed'
+        ? 55
+        : 0,
+  )
+
+  const handleExpandClick = () => expandSidenav()
 </script>
 
 <div
@@ -22,10 +35,23 @@
   style="padding: {containerOffset}px"
 >
   <div
-    class="flex rounded bg-gradient-to-b from-background-toned-1 to-background-toned-0 dark:bg-background-dark h-full rounded overflow-hidden"
+    class="flex rounded bg-gradient-to-b from-background-toned-1 to-background-toned-0 dark:bg-background-dark h-full rounded"
   >
     <!-- Sidenavigation -->
-    <div class="{widthClass} h-full">
+    <div
+      class="relative h-full transition-all ease-in-out duration-300"
+      style={`width: ${navWidth}px`}
+    >
+      {#if sidenavOpenState === 'collapsed'}
+        <div
+          class="absolute top-[20px] -right-[-5px] h-[10px] w-[10px] cursor-pointer z-2"
+          onclick={handleExpandClick}
+        >
+          <IconButton size="sm" colorVariant="primary">
+            <ArrowRightIcon scale={0.6} />
+          </IconButton>
+        </div>
+      {/if}
       <Sidenav />
     </div>
 

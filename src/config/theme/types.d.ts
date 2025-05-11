@@ -17,6 +17,7 @@ namespace Core {
 			background_toned: string[];
 			gray: string;
 			text: string,
+			text_inverse: string;
 			text_light: string,
 			text_primary: string;
 			text_primary_light: string[];

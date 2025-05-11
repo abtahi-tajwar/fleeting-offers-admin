@@ -24,7 +24,8 @@
     --color-background-toned-3: #E3E0DE;
     --color-background-toned-4: #DAD6D4;
     --color-gray: #E1E1E1;
-    --color-text: #ffffff;
+    --color-text: #000000;
+    --color-text-inverse: #ffffff;
     --color-text-light: #4E4E4C;
     --color-text-primary: #47126b;
     --color-text-primary-light-0: #571089;
@@ -49,7 +50,8 @@
     --color-background-toned-3-dark: #2D2A2C;
     --color-background-toned-4-dark: #373336;
     --color-gray-dark: #E1E1E1;
-    --color-text-dark: #000000;
+    --color-text-dark: #ffffff;
+    --color-text-inverse-dark: #000000;
     --color-text-light-dark: #BDBDBB;
     --color-text-primary-dark: #47126b;
     --color-text-primary-light-0-dark: #571089;

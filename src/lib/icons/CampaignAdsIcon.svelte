@@ -13,56 +13,50 @@
 >
   <path
     {scale}
-    d="M7.5 19.5C7.5 18.5344 7.82853 17.5576 8.63092 17.0204C9.59321 16.3761 10.7524 16 12 16C13.2476 16 14.4068 16.3761 15.3691 17.0204C16.1715 17.5576 16.5 18.5344 16.5 19.5"
+    d="M2 10C2 7.17157 2 5.75736 2.87868 4.87868C3.75736 4 5.17157 4 8 4H16C18.8284 4 20.2426 4 21.1213 4.87868C22 5.75736 22 7.17157 22 10V14C22 16.8284 22 18.2426 21.1213 19.1213C20.2426 20 18.8284 20 16 20H8C5.17157 20 3.75736 20 2.87868 19.1213C2 18.2426 2 16.8284 2 14V10Z"
     stroke="#000000"
     stroke-width="1.5"
     stroke-linecap="round"
     stroke-linejoin="round"
   ></path>
-  <circle
-    {scale}
-    cx="12"
-    cy="11"
-    r="2.5"
-    stroke="#000000"
-    stroke-width="1.5"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  ></circle>
   <path
     {scale}
-    d="M17.5 11C18.6101 11 19.6415 11.3769 20.4974 12.0224C21.2229 12.5696 21.5 13.4951 21.5 14.4038V14.5"
+    d="M6 9.90429C6 5.35988 12 9.99015 12 13H8.5C6.7632 13 6 11.4699 6 9.90429Z"
     stroke="#000000"
     stroke-width="1.5"
     stroke-linecap="round"
     stroke-linejoin="round"
   ></path>
-  <circle
-    {scale}
-    cx="17.5"
-    cy="6.5"
-    r="2"
-    stroke="#000000"
-    stroke-width="1.5"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  ></circle>
   <path
     {scale}
-    d="M6.5 11C5.38987 11 4.35846 11.3769 3.50256 12.0224C2.77706 12.5696 2.5 13.4951 2.5 14.4038V14.5"
+    d="M18 9.90429C18 5.35988 12 9.99015 12 13H15.5C17.2368 13 18 11.4699 18 9.90429Z"
     stroke="#000000"
     stroke-width="1.5"
     stroke-linecap="round"
     stroke-linejoin="round"
   ></path>
-  <circle
+  <path
     {scale}
-    cx="6.5"
-    cy="6.5"
-    r="2"
+    d="M12 4V20"
     stroke="#000000"
     stroke-width="1.5"
     stroke-linecap="round"
     stroke-linejoin="round"
-  ></circle>
+  ></path>
+  <path
+    {scale}
+    d="M2 13H22"
+    stroke="#000000"
+    stroke-width="1.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  ></path>
+  <path
+    {scale}
+    d="M15 16L12 13L9 16"
+    stroke="#000000"
+    stroke-width="1.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  ></path>
 </svg>

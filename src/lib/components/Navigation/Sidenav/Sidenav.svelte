@@ -8,13 +8,27 @@
   import { initializeNavTreeState, onNavItemSelect } from './Sidenav.service'
   import type { SidenavModule } from './Sidenav.service'
   import { appStore } from '../../../../store/app.store/appStore.svelte'
+  import {
+    expandSidenav,
+    collapseSidenav,
+  } from '../../../../core/app/app.service'
 
-  let navItems = initializeNavTreeState(navTree)
+  let navItems = $state(initializeNavTreeState(navTree))
   let sidenavOpenState = $derived(appStore.sidenavOpenState)
 
   const handleNavItemSelect = (e: CustomEvent<SidenavModule>) => {
     navItems = onNavItemSelect(navItems, e.detail)
   }
+
+  const handleCollapseSelect = () => {
+    collapseSidenav()
+  }
+
+  let logoDimensionClass = $derived(
+    appStore.sidenavOpenState !== 'collapsed'
+      ? 'h-[30px] w-[30px]'
+      : 'h-[20px] w-[20px]',
+  )
 </script>
 
 <div
@@ -22,88 +36,96 @@
   style={`
 --stop-one: ${theme.light.color.primary}; 
 --stop-two: ${theme.light.color.accent};
-width: ${sidenavOpenState === 'expanded' ? '100%' : '70px'}
 `}
 >
-  {#if sidenavOpenState === 'expanded'}
-    <div class="p-4 flex items-center flex-row gap-[15px]">
-      <div class="h-[30px] w-[30px] rounded overflow-hidden">
-        <img src="/logo.jpg" class="h-full w-full" alt="Main Logo" />
-      </div>
+  <div class="p-4 flex items-center flex-row gap-[15px]">
+    <div class="{logoDimensionClass} rounded overflow-hidden">
+      <img src="/logo.jpg" class="h-full w-full" alt="Main Logo" />
+    </div>
+    {#if sidenavOpenState !== 'collapsed'}
       <p class="text-bold">fleetingoffers</p>
       <div class="ml-auto">
-        <button class="btn btn-circle btn-ghost border-none!">
+        <button
+          class="btn btn-circle btn-ghost border-none!"
+          onclick={handleCollapseSelect}
+        >
           <CollapseIcon />
         </button>
       </div>
-    </div>
-    <div class="flex flex-col p-2 border-b-gray border-b-[0.8px]">
-      <SidenavItems
-        badgeCount={2}
-        module={{
-          label: 'Shortcuts',
-          icon: ShortcutIcon,
-          id: 'history',
-          tags: ['history'],
-          description: '',
-          submodule: [],
-          collapsed: true,
-          selected: true,
-        }}
-      />
-      <SidenavItems
-        badgeCount={0}
-        module={{
-          label: 'History',
-          icon: HistoryIcon,
-          id: 'history',
-          tags: ['history'],
-          description: '',
-          submodule: [],
-          collapsed: true,
-          selected: false,
-        }}
-      />
-    </div>
+    {/if}
+  </div>
+  <div class="flex flex-col p-2 border-b-gray border-b-[0.8px]">
+    <SidenavItems
+      badgeCount={2}
+      module={{
+        label: 'Shortcuts',
+        icon: ShortcutIcon,
+        id: 'history',
+        tags: ['history'],
+        description: '',
+        submodule: [],
+        collapsed: true,
+        selected: true,
+      }}
+    />
+    <SidenavItems
+      badgeCount={0}
+      module={{
+        label: 'History',
+        icon: HistoryIcon,
+        id: 'history',
+        tags: ['history'],
+        description: '',
+        submodule: [],
+        collapsed: true,
+        selected: false,
+      }}
+    />
+  </div>
 
-    <div class="flex flex-col p-2 overflow-y-auto flex-1">
-      <!-- Section -->
-      {#each navItems as section (section.id)}
-        <div class="mt-3 mb-2">
+  <div class="flex flex-col p-2 overflow-y-auto flex-1">
+    <!-- Section -->
+    {#each navItems as section (section.id)}
+      <div class="mt-3 mb-2">
+        {#if sidenavOpenState !== 'collapsed'}
           <p class="text-xs text-text-light uppercase">{section.label}</p>
-          {#each section.module as module (module.id)}
-            <SidenavItems
-              on:menuclick={handleNavItemSelect}
-              {module}
-              badgeCount={0}
-            />
-          {/each}
-        </div>
-      {/each}
-    </div>
-    <div class="absolute mesh-background -inset-10 pointer-events-none"></div>
-  {:else if sidenavOpenState === 'collapsed'}
-    <div class="flex flex-col gap-1 items-center overflow-y-auto">
-      <div class="w-full my-2 flex flex-col gap-1 items-center">
-        <img src="logo.jpg" alt="App Logo" class="h-[50px] w-[50px]" />
-        <div class="collapsed_icon_container">
-          <ShortcutIcon />
-        </div>
-        <div class="collapsed_icon_container">
-          <HistoryIcon />
-        </div>
-      </div>
+        {:else}
+          <p class="text-xs text-text-light uppercase text-center">-</p>
+        {/if}
 
-      {#each navItems as section (section.id)}
-        <div class="my-2">-</div>
         {#each section.module as module (module.id)}
-          <div class="collapsed_icon_container">
-            <svelte:component this={module.icon} />
-          </div>
+          <SidenavItems
+            on:menuclick={handleNavItemSelect}
+            {module}
+            badgeCount={0}
+          />
         {/each}
-      {/each}
-    </div>
-  {/if}
+      </div>
+    {/each}
+  </div>
+  <div class="absolute mesh-background -inset-10 pointer-events-none"></div>
+  <!-- {:else if sidenavOpenState === 'collapsed'} -->
+  <!--   <div class="flex flex-col gap-1 items-center overflow-y-auto"> -->
+  <!--     <div class="w-full my-2 flex flex-col gap-1 items-center"> -->
+  <!--       <img src="logo.jpg" alt="App Logo" class="h-[30px] w-[30px] rounded" /> -->
+  <!--       <div class="collapsed_icon_container"> -->
+  <!--         <ShortcutIcon /> -->
+  <!--       </div> -->
+  <!--       <div class="collapsed_icon_container"> -->
+  <!--         <HistoryIcon /> -->
+  <!--       </div> -->
+  <!--     </div> -->
+  <!---->
+  <!--     {#each navItems as section (section.id)} -->
+  <!--       <div class="my-2">-</div> -->
+  <!--       {#each section.module as module (module.id)} -->
+  <!--         <div class="collapsed_icon_container"> -->
+  <!--           <svelte:component this={module.icon} /> -->
+  <!--         </div> -->
+  <!--       {/each} -->
+  <!--     {/each} -->
+  <!--   </div> -->
+  <!-- {/if} -->
 </div>
 
 <style>

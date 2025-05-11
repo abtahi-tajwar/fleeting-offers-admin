@@ -17,7 +17,8 @@ export const theme: Core.Theme = {
 				'#DAD6D4', // layer-4: muted surface or border background
 			],
 			gray: "#E1E1E1",
-			text: "#ffffff",
+			text: "#000000",
+			text_inverse: "#ffffff",
 			text_light: "#4E4E4C",
 			text_primary: "#47126b",
 			text_primary_light: ["#571089"]
@@ -44,7 +45,8 @@ export const theme: Core.Theme = {
 				'#373336', // layer-4: contrast surface like modals/cards
 			],
 			gray: "#E1E1E1",
-			text: "#000000",
+			text: "#ffffff",
+			text_inverse: "#000000",
 			text_light: "#BDBDBB",
 			text_primary: "#47126b",
 			text_primary_light: ["#571089"]
