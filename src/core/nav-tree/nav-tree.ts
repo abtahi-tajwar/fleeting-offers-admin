@@ -8,6 +8,29 @@ import DashboardIcon from '$lib/icons/DashboardIcon.svelte'
 
 const navTree: Core.NavTree = [
   {
+    id: "analytics",
+    label: "Analytics",
+    description: "View system-level usage stats and reports.",
+    tags: ["analytics", "insights"],
+    module: [
+      {
+        id: "analytics.dashboard",
+        label: "Dashboard",
+        icon: DashboardIcon,
+        description: "View analytics dashboard",
+        tags: ["metrics"],
+        submodule: [
+          {
+            id: "analytics.dashboard.view",
+            label: "View Analytics",
+            description: "System-wide analytics view",
+            tags: ["view"]
+          }
+        ]
+      }
+    ]
+  },
+  {
     id: "advertise",
     label: "Advertise",
     description: "Manage advertisements and related content.",
@@ -149,29 +172,6 @@ const navTree: Core.NavTree = [
       }
     ]
   },
-  {
-    id: "analytics",
-    label: "Analytics",
-    description: "View system-level usage stats and reports.",
-    tags: ["analytics", "insights"],
-    module: [
-      {
-        id: "analytics.dashboard",
-        label: "Dashboard",
-        icon: DashboardIcon,
-        description: "View analytics dashboard",
-        tags: ["metrics"],
-        submodule: [
-          {
-            id: "analytics.dashboard.view",
-            label: "View Analytics",
-            description: "System-wide analytics view",
-            tags: ["view"]
-          }
-        ]
-      }
-    ]
-  }
 ];
 
 export default navTree;

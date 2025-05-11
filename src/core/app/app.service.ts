@@ -6,3 +6,10 @@ function toggleTheme() {
     theme: state.theme === 'light' ? 'dark' : 'light'
   }))
 }
+
+function toggleSideNav() {
+  appStore.update((state: Store.AppStore) => ({
+    ...state,
+    sidenavOpenState: state.sidenavOpenState === "expanded" ? "collapsed" : "expanded",
+  }))
+}

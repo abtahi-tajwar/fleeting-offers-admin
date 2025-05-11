@@ -24,7 +24,7 @@
     on:click={() => handleMenuClick(module)}
   >
     {#if module.icon}
-      <svelte:component this={module.icon.component} scale={0} />
+      <svelte:component this={module.icon} scale={0.8} />
     {/if}
     <Text class="text-sm">{module.label}</Text>
     {#if badgeCount > 0}

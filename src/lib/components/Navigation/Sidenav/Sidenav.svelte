@@ -7,77 +7,118 @@
   import HistoryIcon from '$lib/icons/HistoryIcon.svelte'
   import { initializeNavTreeState, onNavItemSelect } from './Sidenav.service'
   import type { SidenavModule } from './Sidenav.service'
+  import { appStore } from '../../../../store/app.store/appStore.svelte'
 
   let navItems = initializeNavTreeState(navTree)
+  let sidenavOpenState = $derived(appStore.sidenavOpenState)
+
   const handleNavItemSelect = (e: CustomEvent<SidenavModule>) => {
     navItems = onNavItemSelect(navItems, e.detail)
-    console.log('navItems', navItems)
   }
 </script>
 
 <div
-  class="relative flex flex-col w-full h-full overflow-hidden border-r-[0.8px] border-r-gray font-secondary font-medium bg-gray-100"
-  style={`--stop-one: ${theme.light.color.primary}; --stop-two: ${theme.light.color.accent};`}
+  class="relative flex flex-col w-full h-full overflow-hidden border-r-[0.8px] border-r-gray font-secondary font-medium bg-gray-100 transition ease-in-out duration-300"
+  style={`
+--stop-one: ${theme.light.color.primary}; 
+--stop-two: ${theme.light.color.accent};
+width: ${sidenavOpenState === 'expanded' ? '100%' : '70px'}
+`}
 >
-  <div class="p-4 flex items-center flex-row gap-[15px]">
-    <div class="h-[30px] w-[30px] rounded overflow-hidden">
-      <img src="/logo.jpg" class="h-full w-full" alt="Main Logo" />
-    </div>
-    <p class="text-bold">fleetingoffers</p>
-    <div class="ml-auto">
-      <button class="btn btn-circle btn-ghost border-none!">
-        <CollapseIcon />
-      </button>
-    </div>
-  </div>
-  <div class="flex flex-col p-2 border-b-gray border-b-[0.8px]">
-    <SidenavItems
-      badgeCount={2}
-      module={{
-        label: 'Shortcuts',
-        icon: ShortcutIcon,
-        id: 'history',
-        tags: ['history'],
-        description: '',
-        submodule: [],
-        collapsed: true,
-        selected: true,
-      }}
-    />
-    <SidenavItems
-      badgeCount={0}
-      module={{
-        label: 'History',
-        icon: HistoryIcon,
-        id: 'history',
-        tags: ['history'],
-        description: '',
-        submodule: [],
-        collapsed: true,
-        selected: false,
-      }}
-    />
-  </div>
-
-  <div class="flex flex-col p-2 overflow-y-auto flex-1">
-    <!-- Section -->
-    {#each navItems as section (section.id)}
-      <div class="mt-3 mb-2">
-        <p class="text-xs text-text-light uppercase">{section.label}</p>
-        {#each section.module as module (module.id)}
-          <SidenavItems
-            on:menuclick={handleNavItemSelect}
-            {module}
-            badgeCount={0}
-          />
-        {/each}
+  {#if sidenavOpenState === 'expanded'}
+    <div class="p-4 flex items-center flex-row gap-[15px]">
+      <div class="h-[30px] w-[30px] rounded overflow-hidden">
+        <img src="/logo.jpg" class="h-full w-full" alt="Main Logo" />
       </div>
-    {/each}
-  </div>
-  <div class="absolute mesh-background -inset-10 pointer-events-none"></div>
+      <p class="text-bold">fleetingoffers</p>
+      <div class="ml-auto">
+        <button class="btn btn-circle btn-ghost border-none!">
+          <CollapseIcon />
+        </button>
+      </div>
+    </div>
+    <div class="flex flex-col p-2 border-b-gray border-b-[0.8px]">
+      <SidenavItems
+        badgeCount={2}
+        module={{
+          label: 'Shortcuts',
+          icon: ShortcutIcon,
+          id: 'history',
+          tags: ['history'],
+          description: '',
+          submodule: [],
+          collapsed: true,
+          selected: true,
+        }}
+      />
+      <SidenavItems
+        badgeCount={0}
+        module={{
+          label: 'History',
+          icon: HistoryIcon,
+          id: 'history',
+          tags: ['history'],
+          description: '',
+          submodule: [],
+          collapsed: true,
+          selected: false,
+        }}
+      />
+    </div>
+
+    <div class="flex flex-col p-2 overflow-y-auto flex-1">
+      <!-- Section -->
+      {#each navItems as section (section.id)}
+        <div class="mt-3 mb-2">
+          <p class="text-xs text-text-light uppercase">{section.label}</p>
+          {#each section.module as module (module.id)}
+            <SidenavItems
+              on:menuclick={handleNavItemSelect}
+              {module}
+              badgeCount={0}
+            />
+          {/each}
+        </div>
+      {/each}
+    </div>
+    <div class="absolute mesh-background -inset-10 pointer-events-none"></div>
+  {:else if sidenavOpenState === 'collapsed'}
+    <div class="flex flex-col gap-1 items-center overflow-y-auto">
+      <div class="w-full my-2 flex flex-col gap-1 items-center">
+        <img src="logo.jpg" alt="App Logo" class="h-[50px] w-[50px]" />
+        <div class="collapsed_icon_container">
+          <ShortcutIcon />
+        </div>
+        <div class="collapsed_icon_container">
+          <HistoryIcon />
+        </div>
+      </div>
+
+      {#each navItems as section (section.id)}
+        <div class="my-2">-</div>
+        {#each section.module as module (module.id)}
+          <div class="collapsed_icon_container">
+            <svelte:component this={module.icon} />
+          </div>
+        {/each}
+      {/each}
+    </div>
+  {/if}
 </div>
 
 <style>
+  .collapsed_icon_container {
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  .collapsed_icon_container:hover {
+    background-color: var(--color-background-pure);
+  }
   .mesh-background {
     position: absolute;
     opacity: 0.18;
