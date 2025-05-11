@@ -13,6 +13,7 @@ namespace Core {
 			accent: string;
 			accent_deep: string[];
 			background: string;
+			background_inverse: string;
 			background_pure: string;
 			background_toned: string[];
 			gray: string;

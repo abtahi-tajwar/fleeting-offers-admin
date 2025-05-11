@@ -8,6 +8,7 @@ export const theme: Core.Theme = {
 			accent: "#ea698b",
 			accent_deep: ["#d55d92", "#c05299", "#c05299"],
 			background: "#FCFAF8",
+			background_inverse: "#0a0f1c",
 			background_pure: "#ffffff",
 			background_toned: [
 				'#FCFAF8', // layer-0: base background
@@ -36,6 +37,7 @@ export const theme: Core.Theme = {
 			accent: "#ea698b",
 			accent_deep: ["#d55d92", "#c05299", "#c05299"],
 			background: "#0a0f1c",
+			background_inverse: "#FCFAF8",
 			background_pure: "#000000",
 			background_toned: [
 				'#121212', // layer-0: base dark background

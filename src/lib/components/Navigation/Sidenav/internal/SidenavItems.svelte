@@ -6,7 +6,9 @@
   import ArrowRightIcon from '$lib/icons/ArrowRightIcon.svelte'
   import type { SidenavModule } from '../Sidenav.service'
   import { appStore } from '../../../../../store/app.store/appStore.svelte'
+  import SidenavSubmenuPopup from './SidenavSubmenuPopup.svelte'
 
+  let submenuPopupOpen = $state(false)
   const dispatch = createEventDispatcher()
   // export let module: SidenavModule
   // export let badgeCount: number
@@ -17,16 +19,22 @@
   const handleMenuClick = (module: SidenavModule) => {
     dispatch('menuclick', module)
   }
+  const handleMenuHover = (module: SidenavModule) => {
+    dispatch('menuhover', module)
+  }
+
   let sidenavOpenState = $derived(appStore.sidenavOpenState)
 </script>
 
 <div>
   <div
+    id="sidenav-item-{module.id}"
     class="flex flex-row my-1 items-center gap-2 p-2 rounded cursor-pointer hover:bg-background-pure/50 transition ease-in-out duration-300"
     style={module.selected
       ? 'background-color: var(--color-background-pure)'
       : ''}
-    on:click={() => handleMenuClick(module)}
+    onclick={() => handleMenuClick(module)}
+    onmouseover={() => handleMenuHover(module)}
   >
     {#if module.icon}
       <svelte:component this={module.icon} scale={0.8} />

@@ -12,9 +12,10 @@
     expandSidenav,
     collapseSidenav,
   } from '../../../../core/app/app.service'
-
+  import SidenavSubmenuPopup from './internal/SidenavSubmenuPopup.svelte'
   let navItems = $state(initializeNavTreeState(navTree))
   let sidenavOpenState = $derived(appStore.sidenavOpenState)
+  let openedSubmenuPopup: SidenavModule | null = $state(null)
 
   const handleNavItemSelect = (e: CustomEvent<SidenavModule>) => {
     navItems = onNavItemSelect(navItems, e.detail)
@@ -29,6 +30,14 @@
       ? 'h-[30px] w-[30px]'
       : 'h-[20px] w-[20px]',
   )
+
+  const closeSubmenuPopup = () => {
+    openedSubmenuPopup = null
+  }
+
+  const handleNavItemHover = (e: CustomEvent<SidenavModule>) => {
+    openedSubmenuPopup = e.detail
+  }
 </script>
 
 <div
@@ -95,6 +104,7 @@
 
         {#each section.module as module (module.id)}
           <SidenavItems
+            on:menuhover={handleNavItemHover}
             on:menuclick={handleNavItemSelect}
             {module}
             badgeCount={0}
@@ -126,6 +136,13 @@
   <!--     {/each} -->
   <!--   </div> -->
   <!-- {/if} -->
+  {#if sidenavOpenState === 'collapsed' && openedSubmenuPopup}
+    <SidenavSubmenuPopup module={openedSubmenuPopup} />
+    <div
+      onmouseover={closeSubmenuPopup}
+      class="fixed left-[67px] bg-black/10 inset-0"
+    ></div>
+  {/if}
 </div>
 
 <style>
