@@ -17,16 +17,16 @@
   })
 </script>
 
-<div class="fixed z-2 px-3 w-[200px]" style={`left: ${xPos}px; top: ${yPos}px`}>
+<div class="fixed z-2 px-3 w-[150px]" style={`left: ${xPos}px; top: ${yPos}px`}>
   <div class="rounded">
-    <ul class="w-full border-l-[2px] border-l-black pl-1">
+    <ul class="w-full">
       {#each module.submodule as submodule (submodule.id)}
         <a
           href="#"
           class="w-full bg-black hover:bg-gray-800 block my-[1px] rounded p-2"
         >
           <li class="text-white w-full text-xs font-light">
-            {submodule.label}
+            - {submodule.label}
           </li>
         </a>
       {/each}
