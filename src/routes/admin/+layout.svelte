@@ -48,7 +48,7 @@
           onclick={handleExpandClick}
         >
           <IconButton size="sm" colorVariant="primary">
-            <ArrowRightIcon scale={0.6} />
+            <ArrowRightIcon scale={0.6} color="white" />
           </IconButton>
         </div>
       {/if}

@@ -2,8 +2,8 @@
   import { theme } from '../../../config/theme/theme'
 
   let { size, colorVariant = 'pure', ...props }: PropTypes.IconButton = $props()
-  let buttonColor = $derived(getButtonVariantColor(colorVariant))
   let iconColor = $derived(getButtonIconColor(colorVariant))
+  let buttonColor = $derived(getButtonVariantColor(colorVariant))
 
   /** Helper **/
   function getButtonVariantColor(colorVariant: PropTypes.ButtonColorVariants) {
@@ -16,10 +16,10 @@
     }
   }
   function getButtonIconColor(colorVariant: PropTypes.ButtonColorVariants) {
+    debugger
     if (colorVariant === 'pure') {
       return theme.light.color.text
     } else if (colorVariant === 'primary') {
-      debugger
       return theme.light.color.text_inverse
     } else if (colorVariant === 'accent') {
       return theme.light.color.text_inverse
@@ -28,7 +28,7 @@
 </script>
 
 {#if size === 'sm'}
-  <button class="btn btn-circle btn-sm btn-ghost {buttonColor} border-none!">
+  <button class="btn btn-circle btn-sm btn-ghost {buttonColor}  border-none!">
     <slot scale={0.8} color={iconColor} {...props} />
   </button>
 {:else if size === 'md'}
