@@ -35,7 +35,7 @@
   style="padding: {containerOffset}px"
 >
   <div
-    class="flex rounded bg-gradient-to-b from-background-toned-1 to-background-toned-0 dark:bg-background-dark h-full rounded"
+    class="flex rounded bg-gradient-to-b from-background-toned-1 dark:from-background-toned-1-dark to-background-toned-0 dark:to-background-toned-0-dark dark:bg-background-dark h-full rounded overflow-hidden transition-all ease-in-out duration-300"
   >
     <!-- Sidenavigation -->
     <div

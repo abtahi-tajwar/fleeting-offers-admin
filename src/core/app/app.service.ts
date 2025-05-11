@@ -1,7 +1,9 @@
 import { appStore } from "../../store/app.store/appStore.svelte";
 
 export function toggleTheme() {
-  appStore.theme = appStore.theme === 'light' ? 'dark' : 'light'
+  const theme = appStore.theme === 'light' ? 'dark' : 'light'
+  appStore.theme = theme;
+  document.documentElement.classList.toggle('dark')
 }
 
 

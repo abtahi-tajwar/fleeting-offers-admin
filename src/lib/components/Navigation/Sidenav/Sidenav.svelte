@@ -32,7 +32,7 @@
 </script>
 
 <div
-  class="relative flex flex-col w-full h-full overflow-hidden border-r-[0.8px] border-r-gray font-secondary font-medium bg-gray-100 transition ease-in-out duration-300"
+  class="relative flex flex-col w-full h-full overflow-hidden border-r-[0.8px] border-r-gray font-secondary font-medium bg-gray-100 dark:bg-gray-900 transition ease-in-out duration-300"
   style={`
 --stop-one: ${theme.light.color.primary}; 
 --stop-two: ${theme.light.color.accent};
